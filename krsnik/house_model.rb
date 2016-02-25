@@ -10,27 +10,10 @@ DEFAULT_EXTERIOR_COLOR = "Peru.jpg"
 def draw_rect(entities, x0, x1, y0, y1, z0, z1)
 
   pts = []
-  if x0 == x1
-    pts[0] = [x0, y0, z0]
-    pts[1] = [x0, y1, z0]
-    pts[2] = [x0, y1, z1]
-    pts[3] = [x0, y0, z1]
-  elsif y0 == y1
-    pts[0] = [x0, y0, z0]
-    pts[1] = [x1, y0, z0]
-    pts[2] = [x1, y0, z1]
-    pts[3] = [x0, y0, z1]
-  elsif z0 == z1
-    pts[0] = [x0, y0, z0]
-    pts[1] = [x1, y0, z0]
-    pts[2] = [x1, y1, z0]
-    pts[3] = [x0, y1, z0]
-  else
-    pts[0] = [x0, y0, z0]
-    pts[1] = [x1, y0, z0]
-    pts[2] = [x1, y1, z1]
-    pts[3] = [x0, y1, z1]
-  end
+  pts[0] = [x0, y0, z0]
+  pts[1] = [x1, y0, z0]
+  pts[2] = [x1, y1, z1]
+  pts[3] = [x0, y1, z1]
   entities.add_face pts
 end
 
