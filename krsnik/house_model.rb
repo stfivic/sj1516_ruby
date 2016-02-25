@@ -143,7 +143,7 @@ def draw_front_door(model, width, front_door_width, front_door_height, thickness
   # make hole
   frdh_face.pushpull(-thickness)
 
-  # front door brick frame, padding = 0.2m
+  # front door brick frame, padding = 0.3m
   frdf_face = draw_rect(entities,
                           (width - front_door_width)/2 - FRONT_DOOR_FRAME_PADDING,
                           (width - front_door_width)/2 + front_door_width + FRONT_DOOR_FRAME_PADDING,
