@@ -41,6 +41,7 @@ def draw_base_story(model, width, depth, height, thickness, corridor_width,
 
   entities = model.active_entities
   materials = model.materials
+  
   # ground face
   grnd_face = draw_rect(entities, 0, width.m, 0, depth.m, height.m, height.m)
   # pull ground face up to height
