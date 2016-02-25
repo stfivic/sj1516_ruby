@@ -6,6 +6,7 @@ WINDOW_HEIGHT_FROM_FLOOR = 0.9.m
 ROOF_THICKNESS = 0.25.m
 TEXTURES_DIR = "C:/Users/Ivan/AppData/Roaming/SketchUp/SketchUp 2016/SketchUp/Custom Textures/"
 DEFAULT_EXTERIOR_COLOR = "Peru.jpg"
+
 def draw_rect(entities, x0, x1, y0, y1, z0, z1)
 
   pts = []
