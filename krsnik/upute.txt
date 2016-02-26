@@ -1,9 +1,16 @@
-1. ruby skriptu smjestiti u direktorij "C:\Users\{username}\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\Plugins\"
+1. ruby skriptu smjestiti u direktorij
+   
+      "C:\Users\{username}\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\Plugins\"
 
-2. izraditi direktorij "Custom Textures", u njega smjestiti jpg texture,
-   a njega smjestiti u "C:\Users\{username}\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\" i promijeniti path u skripti za odgovarajuci username
+2. unzipat "Custom Textures.zip" i smjestiti folder "Custom Textures" u 
 
-3. koristen je Sketchup Pro 2016 trial version, template Architectural Design - Meters, skripta se pokrece na Window -> Ruby Console -> upisati load('house_model.rb')
+      "C:\Users\{username}\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\"
+   
+   i promijeniti path u skripti za odgovarajuci username
+
+3. koristen je Sketchup Pro 2016 trial version, template Architectural Design - Meters, skripta se pokrece na 
+
+   Window -> Ruby    Console -> upisati load('house_model.rb')
 
 4. mogu se mijenjati parametri, za provjeru promjene layouta prostorija moze se staviti Draw Roof? = No
 
