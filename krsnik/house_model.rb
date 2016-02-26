@@ -308,7 +308,7 @@ def draw_roof(model, width, depth, height, num_stories, roof_height, color_flag)
 
   tr_pts1[0] = [0, 0, num_stories * height.m]
   tr_pts1[1] = [0, depth.m/2, num_stories * height.m + roof_height.m]
-  tr_pts1[2] = [0, depth.m, num_stories * (height.m)]
+  tr_pts1[2] = [0, depth.m, num_stories * height.m]
   tr1 = entities.add_face tr_pts1
 
   tr_pts2[0] = [width.m, 0, num_stories * height.m]
@@ -323,7 +323,7 @@ def draw_roof(model, width, depth, height, num_stories, roof_height, color_flag)
     exterior_color.texture = TEXTURES_DIR + DEFAULT_EXTERIOR_COLOR
     exterior_color.texture.size = DEFAULT_TEXTURE_SIZE
     tr1.material = exterior_color
-    tr2.material = exterior_color
+    tr2.back_material = exterior_color
   end
 end
 
