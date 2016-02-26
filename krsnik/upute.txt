@@ -2,7 +2,7 @@
    
       "C:\Users\{username}\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\Plugins\"
 
-2. unzipat "Custom Textures.zip" i smjestiti folder "Custom Textures" u 
+2. unzipat "Custom_Textures.zip" i smjestiti folder "Custom Textures" u 
 
       "C:\Users\{username}\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\"
    
