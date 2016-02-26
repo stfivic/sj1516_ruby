@@ -4,6 +4,7 @@ FRONT_DOOR_FRAME_PADDING = 0.3.m
 DOORKNOB_DEFAULT_RADIUS = 0.05.m
 WINDOW_HEIGHT_FROM_FLOOR = 0.9.m
 ROOF_THICKNESS = 0.25.m
+ROOF_INDENT = 0.3.m
 TEXTURES_DIR = "C:/Users/Ivan/AppData/Roaming/SketchUp/SketchUp 2016/SketchUp/Custom Textures/"
 DEFAULT_EXTERIOR_COLOR = "Peru.jpg"
 
@@ -41,7 +42,7 @@ def draw_base_story(model, width, depth, height, thickness, corridor_width,
 
   entities = model.active_entities
   materials = model.materials
-  
+
   # ground face
   grnd_face = draw_rect(entities, 0, width.m, 0, depth.m, height.m, height.m)
   # pull ground face up to height
@@ -286,8 +287,8 @@ def draw_roof(model, width, depth, height, num_stories, roof_height, color_flag)
   entities = model.active_entities
   materials = model.materials
 
-  roof_front_side = draw_rect(entities, 0, width.m, 0, depth.m/2, num_stories * height.m, num_stories * height.m + roof_height.m)
-  roof_back_side = draw_rect(entities, 0, width.m, depth.m/2, depth.m, num_stories * height.m + roof_height.m, num_stories * height.m)
+  roof_front_side = draw_rect(entities, -ROOF_INDENT, width.m + ROOF_INDENT, 0, depth.m/2, num_stories * height.m, num_stories * height.m + roof_height.m)
+  roof_back_side = draw_rect(entities, -ROOF_INDENT, width.m + ROOF_INDENT, depth.m/2, depth.m, num_stories * height.m + roof_height.m, num_stories * height.m)
 
   # make roofing texture for the roof and apply it to both sides
   roofing_tile = materials.add "Roofing Tile"
@@ -295,10 +296,12 @@ def draw_roof(model, width, depth, height, num_stories, roof_height, color_flag)
   roofing_tile.texture.size = DEFAULT_TEXTURE_SIZE
 
   roof_front_side.material = roofing_tile
+  roof_front_side.back_material = roofing_tile
   roof_back_side.material = roofing_tile
+  roof_back_side.back_material = roofing_tile
 
   roof_front_side.pushpull(ROOF_THICKNESS)
-  roof_back_side.pushpull(ROOF_THICKNESS)
+  roof_back_side.pushpull(ROOF_THICKNESS, true)
 
   tr_pts1 = []
   tr_pts2 = []
@@ -337,8 +340,8 @@ def draw_additional_stories(model, num_stories, height)
   end
   #explode the base story so front doors can be added
   story.explode
-
 end
+
 # Getting parameters
 prompts = ["Width [m]  ",
           "Depth [m]  ",
