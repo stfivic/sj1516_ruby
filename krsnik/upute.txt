@@ -10,7 +10,7 @@
 
 3. koristen je Sketchup Pro 2016 trial version, template Architectural Design - Meters, skripta se pokrece na 
 
-   Window -> Ruby    Console -> upisati load('house_model.rb')
+   Window -> Ruby Console -> upisati load('house_model.rb')
 
 4. mogu se mijenjati parametri, za provjeru promjene layouta prostorija moze se staviti Draw Roof? = No
 
