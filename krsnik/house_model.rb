@@ -362,7 +362,8 @@ def draw_roof(model, width, depth, height, num_stories, roof_height, color_flag)
     exterior_color.texture = TEXTURES_DIR + DEFAULT_EXTERIOR_COLOR
     exterior_color.texture.size = DEFAULT_TEXTURE_SIZE
     tr1.material = exterior_color
-    tr2.back_material = exterior_color
+    num_stories > 1 ? tr2.back_material = exterior_color : tr2.material = exterior_color
+
   end
 end
 
@@ -373,7 +374,7 @@ def draw_additional_stories(model, num_stories, height)
   # make a copy of the base story and move it on top of existing stories
   for i in 0...(num_stories - 1)
     new_story = story.copy
-    moving_point = Geom::Point3d.new -0.1.m, -0.1.m, (i + 1) * height
+    moving_point = Geom::Point3d.new -0.1.m, -0.1.m, (i + 1) * (height)
     t = Geom::Transformation.new moving_point
     new_story = new_story.move! t
   end
