@@ -205,9 +205,15 @@ def draw_window(model, x0, x1, y0, y1, z0, z1, thickness)
   # if the window is to be on the left side
   if x0 == x1 && x0 == 0
     # window pane face
-    window_pane_face = draw_rect(entities, x0 + thickness - 0.1.m, x1 + thickness - 0.1.m, y0, y1, z0, z1)
+    window_pane_face = draw_rect(entities,
+                                x0 + thickness - 0.1.m, x1 + thickness - 0.1.m,
+                                y0, y1,
+                                z0, z1)
     # window glass face
-    window_glass_face = draw_rect(entities, x0  + thickness - 0.1.m, x1 + thickness - 0.1.m, y0 + 0.1.m, y1 - 0.1.m, z0 + 0.1.m, z1 - 0.1.m)
+    window_glass_face = draw_rect(entities,
+                                  x0  + thickness - 0.1.m, x1 + thickness - 0.1.m,
+                                  y0 + 0.1.m, y1 - 0.1.m,
+                                  z0 + 0.1.m, z1 - 0.1.m)
     window_pane_face.pushpull(-0.05.m)
 
     # build window apron
@@ -216,35 +222,62 @@ def draw_window(model, x0, x1, y0, y1, z0, z1, thickness)
   # if the window is to be on the right side
   elsif x0 == x1 && x0 > 0
     # window pane face
-    window_pane_face = draw_rect(entities, x0 - thickness + 0.1.m, x1 - thickness + 0.1.m, y0, y1, z0, z1)
+    window_pane_face = draw_rect(entities,
+                                x0 - thickness + 0.1.m, x1 - thickness + 0.1.m,
+                                y0, y1,
+                                z0, z1)
     # window glass face
-    window_glass_face = draw_rect(entities, x0  - thickness + 0.1.m, x1 - thickness + 0.1.m, y0 + 0.1.m, y1 - 0.1.m, z0 + 0.1.m, z1 - 0.1.m)
+    window_glass_face = draw_rect(entities,
+                                  x0  - thickness + 0.1.m, x1 - thickness + 0.1.m,
+                                  y0 + 0.1.m, y1 - 0.1.m,
+                                  z0 + 0.1.m, z1 - 0.1.m)
     window_pane_face.pushpull(0.05.m)
 
     # build window apron
-    window_apron = draw_rect(entities, x0, x1, y0 - 0.1.m, y1 + 0.1.m, z0 - 0.1.m, z0)
+    window_apron = draw_rect(entities,
+                            x0, x1,
+                            y0 - 0.1.m, y1 + 0.1.m,
+                            z0 - 0.1.m, z0)
     window_apron.pushpull(0.1.m)
   # if the window is to be on the front side
   elsif y0 == y1 && y0 == 0
     # window pane face
-    window_pane_face = draw_rect(entities, x0, x1, y0 + thickness - 0.1.m, y1 + thickness - 0.1.m, z0, z1)
+    window_pane_face = draw_rect(entities,
+                                x0, x1,
+                                y0 + thickness - 0.1.m, y1 + thickness - 0.1.m,
+                                z0, z1)
     # window glass face
-    window_glass_face = draw_rect(entities, x0 + 0.1.m, x1 - 0.1.m, y0 + thickness - 0.1.m, y1 + thickness - 0.1.m, z0 + 0.1.m, z1 - 0.1.m)
+    window_glass_face = draw_rect(entities,
+                                  x0 + 0.1.m, x1 - 0.1.m,
+                                  y0 + thickness - 0.1.m, y1 + thickness - 0.1.m,
+                                  z0 + 0.1.m, z1 - 0.1.m)
     window_pane_face.pushpull(0.05.m)
 
     # build window apron
-    window_apron = draw_rect(entities, x0 - 0.1.m, x1 + 0.1.m, y0, y1, z0 - 0.1.m, z0)
+    window_apron = draw_rect(entities,
+                            x0 - 0.1.m, x1 + 0.1.m,
+                            y0, y1,
+                            z0 - 0.1.m, z0)
     window_apron.pushpull(0.1.m)
   # if the window is to be on the back side
   elsif y0 == y1 && y0 > 0
     # window pane face
-    window_pane_face = draw_rect(entities, x0, x1, y0 - thickness + 0.1.m, y1 - thickness + 0.1.m, z0, z1)
+    window_pane_face = draw_rect(entities,
+                                x0, x1,
+                                y0 - thickness + 0.1.m, y1 - thickness + 0.1.m,
+                                z0, z1)
     # window glass face
-    window_glass_face = draw_rect(entities, x0 + 0.1.m, x1 - 0.1.m, y0 - thickness + 0.1.m, y1 - thickness + 0.1.m, z0 + 0.1.m, z1 - 0.1.m)
+    window_glass_face = draw_rect(entities,
+                                  x0 + 0.1.m, x1 - 0.1.m,
+                                  y0 - thickness + 0.1.m, y1 - thickness + 0.1.m,
+                                  z0 + 0.1.m, z1 - 0.1.m)
     window_pane_face.pushpull(-0.05.m)
 
     # build window apron
-    window_apron = draw_rect(entities, x0 - 0.1.m, x1 + 0.1.m, y0, y1, z0 - 0.1.m, z0)
+    window_apron = draw_rect(entities,
+                            x0 - 0.1.m, x1 + 0.1.m,
+                            y0, y1,
+                            z0 - 0.1.m, z0)
     window_apron.pushpull(0.1.m)
   end
 
@@ -287,8 +320,14 @@ def draw_roof(model, width, depth, height, num_stories, roof_height, color_flag)
   entities = model.active_entities
   materials = model.materials
 
-  roof_front_side = draw_rect(entities, -ROOF_INDENT, width.m + ROOF_INDENT, 0, depth.m/2, num_stories * height.m, num_stories * height.m + roof_height.m)
-  roof_back_side = draw_rect(entities, -ROOF_INDENT, width.m + ROOF_INDENT, depth.m/2, depth.m, num_stories * height.m + roof_height.m, num_stories * height.m)
+  roof_front_side = draw_rect(entities,
+                              -ROOF_INDENT, width.m + ROOF_INDENT,
+                              0, depth.m/2,
+                              num_stories * height.m, num_stories * height.m + roof_height.m)
+  roof_back_side = draw_rect(entities,
+                              -ROOF_INDENT, width.m + ROOF_INDENT,
+                              depth.m/2, depth.m,
+                              num_stories * height.m + roof_height.m, num_stories * height.m)
 
   # make roofing texture for the roof and apply it to both sides
   roofing_tile = materials.add "Roofing Tile"
@@ -334,7 +373,7 @@ def draw_additional_stories(model, num_stories, height)
   # make a copy of the base story and move it on top of existing stories
   for i in 0...(num_stories - 1)
     new_story = story.copy
-    moving_point = Geom::Point3d.new -0.1.m, -0.1.m, (i + 1) * (height) #  0, 0, (i + 1) * (height.m) ??
+    moving_point = Geom::Point3d.new -0.1.m, -0.1.m, (i + 1) * height
     t = Geom::Transformation.new moving_point
     new_story = new_story.move! t
   end
