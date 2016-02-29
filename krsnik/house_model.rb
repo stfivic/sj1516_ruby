@@ -1,12 +1,15 @@
+TEXTURES_DIR = "C:/Users/Ivan/AppData/Roaming/SketchUp/SketchUp 2016/SketchUp/Custom Textures/"
+DEFAULT_EXTERIOR_COLOR = "Peru.jpg"
 DEFAULT_TEXTURE_SIZE = 50
 FLOOR_PADDING = 0.1.m
 FRONT_DOOR_FRAME_PADDING = 0.3.m
+FRONT_DOOR_FRAME_DEPTH = 0.15.m
+FRONT_DOOR_GLASS_DEPTH = 0.1.m
 DOORKNOB_DEFAULT_RADIUS = 0.05.m
 WINDOW_HEIGHT_FROM_FLOOR = 0.9.m
+WINDOW_PADDING = 0.1.m
 ROOF_THICKNESS = 0.25.m
 ROOF_INDENT = 0.3.m
-TEXTURES_DIR = "C:/Users/Ivan/AppData/Roaming/SketchUp/SketchUp 2016/SketchUp/Custom Textures/"
-DEFAULT_EXTERIOR_COLOR = "Peru.jpg"
 
 def draw_rect(entities, x0, x1, y0, y1, z0, z1)
 
@@ -44,9 +47,9 @@ def draw_base_story(model, width, depth, height, thickness, corridor_width,
   materials = model.materials
 
   # ground face
-  grnd_face = draw_rect(entities, 0, width.m, 0, depth.m, height.m, height.m)
+  grnd_face = draw_rect(entities, 0, width, 0, depth, height, height)
   # pull ground face up to height
-  grnd_face.pushpull(-height.m)
+  grnd_face.pushpull(-height)
 
   # color the outer walls if the flag is up, determine right faces
   if color_flag
@@ -73,59 +76,59 @@ def draw_base_story(model, width, depth, height, thickness, corridor_width,
   end
 
   # corridor face
-  corr_face = draw_rect(entities, room_width.m + 2 * thickness.m,
-                                    room_width.m + 2 * thickness.m + corridor_width.m,
-                                    thickness.m,
-                                    depth.m - thickness.m,
-                                    height.m,
-                                    height.m)
+  corr_face = draw_rect(entities,
+                        room_width + 2 * thickness,
+                        room_width + 2 * thickness + corridor_width,
+                        thickness,
+                        depth - thickness,
+                        height,
+                        height)
   # push corridor face to ground
-  corr_face.pushpull(- height.m + FLOOR_PADDING)
+  corr_face.pushpull(- height + FLOOR_PADDING)
 
   # front room face
-  frp_face = draw_rect(entities, thickness.m,
-                                  thickness.m + room_width.m,
-                                  thickness.m,
-                                  thickness.m + front_room_depth.m,
-                                  height.m,
-                                  height.m)
+  frp_face = draw_rect(entities,
+                      thickness,
+                      thickness + room_width,
+                      thickness,
+                      thickness + front_room_depth,
+                      height,
+                      height)
   # push front room face to ground
-  frp_face.pushpull(- height.m + FLOOR_PADDING)
+  frp_face.pushpull(- height + FLOOR_PADDING)
 
   # back room face
   brp_face = draw_rect(entities,
-                                  thickness.m,
-                                  thickness.m + room_width.m,
-                                  2 * thickness.m + front_room_depth.m,
-                                  2 * thickness.m + front_room_depth.m + back_room_depth.m,
-                                  height.m,
-                                  height.m)
+                      thickness,
+                      thickness + room_width,
+                      2 * thickness + front_room_depth,
+                      2 * thickness + front_room_depth + back_room_depth,
+                      height,
+                      height)
   # push back room face to ground
-  brp_face.pushpull(- height.m + FLOOR_PADDING)
-
-
+  brp_face.pushpull(- height + FLOOR_PADDING)
 
   # living room face
   lr_face = draw_rect(entities,
-                                  3 * thickness.m + room_width.m + corridor_width.m,
-                                  3 * thickness.m + 2 * room_width.m + corridor_width.m,
-                                  thickness.m,
-                                  thickness.m + living_room_depth.m,
-                                  height.m,
-                                  height.m)
+                      3 * thickness + room_width + corridor_width,
+                      3 * thickness + 2 * room_width + corridor_width,
+                      thickness,
+                      thickness + living_room_depth,
+                      height,
+                      height)
   # push living room face to ground
-  lr_face.pushpull(- height.m + FLOOR_PADDING)
+  lr_face.pushpull(- height + FLOOR_PADDING)
 
   # bathroom room face
   br_face = draw_rect(entities,
-                                  3 * thickness.m + room_width.m + corridor_width.m,
-                                  3 * thickness.m + 2 * room_width.m + corridor_width.m,
-                                  2 * thickness.m + living_room_depth.m,
-                                  2 * thickness.m + living_room_depth.m + bathroom_depth.m,
-                                  height.m,
-                                  height.m)
+                      3 * thickness + room_width + corridor_width,
+                      3 * thickness + 2 * room_width + corridor_width,
+                      2 * thickness + living_room_depth,
+                      2 * thickness + living_room_depth + bathroom_depth,
+                      height,
+                      height)
   # push bathroom room face to ground
-  br_face.pushpull(- height.m + FLOOR_PADDING)
+  br_face.pushpull(- height + FLOOR_PADDING)
 end
 
 def draw_front_door(model, width, front_door_width, front_door_height, thickness)
@@ -135,23 +138,23 @@ def draw_front_door(model, width, front_door_width, front_door_height, thickness
 
   # front door hole
   frdh_face = draw_rect(entities,
-                          (width - front_door_width)/2 - FRONT_DOOR_FRAME_PADDING,
-                          (width - front_door_width)/2 + front_door_width + FRONT_DOOR_FRAME_PADDING,
-                          0,
-                          0,
-                          FLOOR_PADDING,
-                          FLOOR_PADDING + front_door_height + FRONT_DOOR_FRAME_PADDING)
+                        (width - front_door_width)/2 - FRONT_DOOR_FRAME_PADDING,
+                        (width - front_door_width)/2 + front_door_width + FRONT_DOOR_FRAME_PADDING,
+                        0,
+                        0,
+                        FLOOR_PADDING,
+                        FLOOR_PADDING + front_door_height + FRONT_DOOR_FRAME_PADDING)
   # make hole
   frdh_face.pushpull(-thickness)
 
   # front door brick frame, padding = 0.3m
   frdf_face = draw_rect(entities,
-                          (width - front_door_width)/2 - FRONT_DOOR_FRAME_PADDING,
-                          (width - front_door_width)/2 + front_door_width + FRONT_DOOR_FRAME_PADDING,
-                          0.15.m,
-                          0.15.m,
-                          FLOOR_PADDING,
-                          FLOOR_PADDING + front_door_height + FRONT_DOOR_FRAME_PADDING)
+                        (width - front_door_width)/2 - FRONT_DOOR_FRAME_PADDING,
+                        (width - front_door_width)/2 + front_door_width + FRONT_DOOR_FRAME_PADDING,
+                        FRONT_DOOR_FRAME_DEPTH,
+                        FRONT_DOOR_FRAME_DEPTH,
+                        FLOOR_PADDING,
+                        FLOOR_PADDING + front_door_height + FRONT_DOOR_FRAME_PADDING)
   # make brick texture for the frame and apply it to both sides
   front_door_brick = materials.add "Front Door Brick"
   front_door_brick.texture = TEXTURES_DIR + "Stone_Sandstone_Ashlar_Light.jpg"
@@ -161,30 +164,29 @@ def draw_front_door(model, width, front_door_width, front_door_height, thickness
 
   # draw wooden doors
   frd_face = draw_rect(entities,
-                          (width - front_door_width)/2,
-                          (width - front_door_width)/2 + front_door_width,
-                          0.15.m,
-                          0.15.m,
-                          FLOOR_PADDING,
-                          FLOOR_PADDING + front_door_height)
+                      (width - front_door_width)/2,
+                      (width - front_door_width)/2 + front_door_width,
+                      FRONT_DOOR_FRAME_DEPTH,
+                      FRONT_DOOR_FRAME_DEPTH,
+                      FLOOR_PADDING,
+                      FLOOR_PADDING + front_door_height)
   # make wooden texture for the door and apply it to both sides
   front_door_wood = materials.add "Front Door Wood"
   front_door_wood.texture = TEXTURES_DIR + "Wood_Bamboo.jpg"
   front_door_wood.texture.size = DEFAULT_TEXTURE_SIZE
   frd_face.material = front_door_wood
   frd_face.back_material = front_door_wood
-
   # push slightly to front
   frd_face.pushpull(0.05.m)
 
   # front door glass face
   frdg_face = draw_rect(entities,
-                          (width - front_door_width)/2 + 0.25 * front_door_width,
-                          (width - front_door_width)/2 + 0.75 * front_door_width,
-                          0.10.m,
-                          0.10.m,
-                          FLOOR_PADDING + 0.15 * front_door_height,
-                          FLOOR_PADDING + 0.85 * front_door_height)
+                        (width - front_door_width)/2 + 0.25 * front_door_width,
+                        (width - front_door_width)/2 + 0.75 * front_door_width,
+                        FRONT_DOOR_GLASS_DEPTH,
+                        FRONT_DOOR_GLASS_DEPTH,
+                        FLOOR_PADDING + 0.15 * front_door_height,
+                        FLOOR_PADDING + 0.85 * front_door_height)
   # make glass texture and apply it to both sides
   front_door_glass = materials.add "Front Door Glass"
   front_door_glass.texture = TEXTURES_DIR + "Translucent_Glass_Block_Dark.jpg"
@@ -206,79 +208,102 @@ def draw_window(model, x0, x1, y0, y1, z0, z1, thickness)
   if x0 == x1 && x0 == 0
     # window pane face
     window_pane_face = draw_rect(entities,
-                                x0 + thickness - 0.1.m, x1 + thickness - 0.1.m,
+                                x0 + thickness - WINDOW_PADDING,
+                                x1 + thickness - WINDOW_PADDING,
                                 y0, y1,
                                 z0, z1)
     # window glass face
     window_glass_face = draw_rect(entities,
-                                  x0  + thickness - 0.1.m, x1 + thickness - 0.1.m,
-                                  y0 + 0.1.m, y1 - 0.1.m,
-                                  z0 + 0.1.m, z1 - 0.1.m)
-    window_pane_face.pushpull(-0.05.m)
-
-    # build window apron
-    window_apron = draw_rect(entities, x0, x1, y0 - 0.1.m, y1 + 0.1.m, z0 - 0.1.m, z0)
-    window_apron.pushpull(0.1.m)
-  # if the window is to be on the right side
-  elsif x0 == x1 && x0 > 0
-    # window pane face
-    window_pane_face = draw_rect(entities,
-                                x0 - thickness + 0.1.m, x1 - thickness + 0.1.m,
-                                y0, y1,
-                                z0, z1)
-    # window glass face
-    window_glass_face = draw_rect(entities,
-                                  x0  - thickness + 0.1.m, x1 - thickness + 0.1.m,
-                                  y0 + 0.1.m, y1 - 0.1.m,
-                                  z0 + 0.1.m, z1 - 0.1.m)
-    window_pane_face.pushpull(0.05.m)
+                                  x0  + thickness - WINDOW_PADDING,
+                                  x1 + thickness - WINDOW_PADDING,
+                                  y0 + WINDOW_PADDING,
+                                  y1 - WINDOW_PADDING,
+                                  z0 + WINDOW_PADDING,
+                                  z1 - WINDOW_PADDING)
+    window_pane_face.pushpull(-WINDOW_PADDING/2)
 
     # build window apron
     window_apron = draw_rect(entities,
                             x0, x1,
-                            y0 - 0.1.m, y1 + 0.1.m,
-                            z0 - 0.1.m, z0)
-    window_apron.pushpull(0.1.m)
+                            y0 - WINDOW_PADDING,
+                            y1 + WINDOW_PADDING,
+                            z0 - WINDOW_PADDING, z0)
+    window_apron.pushpull(WINDOW_PADDING)
+  # if the window is to be on the right side
+  elsif x0 == x1 && x0 > 0
+    # window pane face
+    window_pane_face = draw_rect(entities,
+                                x0 - thickness + WINDOW_PADDING,
+                                x1 - thickness + WINDOW_PADDING,
+                                y0, y1,
+                                z0, z1)
+    # window glass face
+    window_glass_face = draw_rect(entities,
+                                  x0  - thickness + WINDOW_PADDING,
+                                  x1 - thickness + WINDOW_PADDING,
+                                  y0 + WINDOW_PADDING,
+                                  y1 - WINDOW_PADDING,
+                                  z0 + WINDOW_PADDING,
+                                  z1 - WINDOW_PADDING)
+    window_pane_face.pushpull(WINDOW_PADDING/2)
+
+    # build window apron
+    window_apron = draw_rect(entities,
+                            x0, x1,
+                            y0 - WINDOW_PADDING,
+                            y1 + WINDOW_PADDING,
+                            z0 - WINDOW_PADDING, z0)
+    window_apron.pushpull(WINDOW_PADDING)
   # if the window is to be on the front side
   elsif y0 == y1 && y0 == 0
     # window pane face
     window_pane_face = draw_rect(entities,
                                 x0, x1,
-                                y0 + thickness - 0.1.m, y1 + thickness - 0.1.m,
+                                y0 + thickness - WINDOW_PADDING,
+                                y1 + thickness - WINDOW_PADDING,
                                 z0, z1)
     # window glass face
     window_glass_face = draw_rect(entities,
-                                  x0 + 0.1.m, x1 - 0.1.m,
-                                  y0 + thickness - 0.1.m, y1 + thickness - 0.1.m,
-                                  z0 + 0.1.m, z1 - 0.1.m)
-    window_pane_face.pushpull(0.05.m)
+                                  x0 + WINDOW_PADDING,
+                                  x1 - WINDOW_PADDING,
+                                  y0 + thickness - WINDOW_PADDING,
+                                  y1 + thickness - WINDOW_PADDING,
+                                  z0 + WINDOW_PADDING,
+                                  z1 - WINDOW_PADDING)
+    window_pane_face.pushpull(WINDOW_PADDING/2)
 
     # build window apron
     window_apron = draw_rect(entities,
-                            x0 - 0.1.m, x1 + 0.1.m,
+                            x0 - WINDOW_PADDING,
+                            x1 + WINDOW_PADDING,
                             y0, y1,
-                            z0 - 0.1.m, z0)
-    window_apron.pushpull(0.1.m)
+                            z0 - WINDOW_PADDING, z0)
+    window_apron.pushpull(WINDOW_PADDING)
   # if the window is to be on the back side
   elsif y0 == y1 && y0 > 0
     # window pane face
     window_pane_face = draw_rect(entities,
                                 x0, x1,
-                                y0 - thickness + 0.1.m, y1 - thickness + 0.1.m,
+                                y0 - thickness + WINDOW_PADDING,
+                                y1 - thickness + WINDOW_PADDING,
                                 z0, z1)
     # window glass face
     window_glass_face = draw_rect(entities,
-                                  x0 + 0.1.m, x1 - 0.1.m,
-                                  y0 - thickness + 0.1.m, y1 - thickness + 0.1.m,
-                                  z0 + 0.1.m, z1 - 0.1.m)
-    window_pane_face.pushpull(-0.05.m)
+                                  x0 + WINDOW_PADDING,
+                                  x1 - WINDOW_PADDING,
+                                  y0 - thickness + WINDOW_PADDING,
+                                  y1 - thickness + WINDOW_PADDING,
+                                  z0 + WINDOW_PADDING,
+                                  z1 - WINDOW_PADDING)
+    window_pane_face.pushpull(-WINDOW_PADDING/2)
 
     # build window apron
     window_apron = draw_rect(entities,
-                            x0 - 0.1.m, x1 + 0.1.m,
+                            x0 - WINDOW_PADDING,
+                            x1 + WINDOW_PADDING,
                             y0, y1,
-                            z0 - 0.1.m, z0)
-    window_apron.pushpull(0.1.m)
+                            z0 - WINDOW_PADDING, z0)
+    window_apron.pushpull(WINDOW_PADDING)
   end
 
   # apply glass texture
@@ -321,13 +346,15 @@ def draw_roof(model, width, depth, height, num_stories, roof_height, color_flag)
   materials = model.materials
 
   roof_front_side = draw_rect(entities,
-                              -ROOF_INDENT, width.m + ROOF_INDENT,
-                              0, depth.m/2,
-                              num_stories * height.m, num_stories * height.m + roof_height.m)
+                              -ROOF_INDENT, width + ROOF_INDENT,
+                              0, depth/2,
+                              num_stories * height,
+                              num_stories * height + roof_height)
   roof_back_side = draw_rect(entities,
-                              -ROOF_INDENT, width.m + ROOF_INDENT,
-                              depth.m/2, depth.m,
-                              num_stories * height.m + roof_height.m, num_stories * height.m)
+                              -ROOF_INDENT, width + ROOF_INDENT,
+                              depth/2, depth,
+                              num_stories * height + roof_height,
+                              num_stories * height)
 
   # make roofing texture for the roof and apply it to both sides
   roofing_tile = materials.add "Roofing Tile"
@@ -345,14 +372,14 @@ def draw_roof(model, width, depth, height, num_stories, roof_height, color_flag)
   tr_pts1 = []
   tr_pts2 = []
 
-  tr_pts1[0] = [0, 0, num_stories * height.m]
-  tr_pts1[1] = [0, depth.m/2, num_stories * height.m + roof_height.m]
-  tr_pts1[2] = [0, depth.m, num_stories * height.m]
+  tr_pts1[0] = [0, 0, num_stories * height]
+  tr_pts1[1] = [0, depth/2, num_stories * height + roof_height]
+  tr_pts1[2] = [0, depth, num_stories * height]
   tr1 = entities.add_face tr_pts1
 
-  tr_pts2[0] = [width.m, 0, num_stories * height.m]
-  tr_pts2[1] = [width.m, depth.m/2, num_stories * height.m + roof_height.m]
-  tr_pts2[2] = [width.m, depth.m, num_stories * height.m]
+  tr_pts2[0] = [width, 0, num_stories * height]
+  tr_pts2[1] = [width, depth/2, num_stories * height + roof_height]
+  tr_pts2[2] = [width, depth, num_stories * height]
   tr2 = entities.add_face tr_pts2
 
   # color triangle shaped parts of wall if needed
@@ -370,11 +397,12 @@ end
 def draw_additional_stories(model, num_stories, height)
 
   entities = model.active_entities
+  # group the elements of the base story for copying
   story=entities.add_group(entities.to_a)
   # make a copy of the base story and move it on top of existing stories
   for i in 0...(num_stories - 1)
     new_story = story.copy
-    moving_point = Geom::Point3d.new -0.1.m, -0.1.m, (i + 1) * height
+    moving_point = Geom::Point3d.new -WINDOW_PADDING, -WINDOW_PADDING, (i + 1) * height
     t = Geom::Transformation.new moving_point
     new_story = new_story.move! t
   end
@@ -428,10 +456,10 @@ model = Sketchup.active_model
 entities = model.active_entities
 materials = model.materials
 
-draw_base_story(model, width, depth, height, thickness, corridor_width,
+draw_base_story(model, width.m, depth.m, height.m, thickness.m, corridor_width.m,
                 rooms_depth_ratio, living_room_bathroom_depth_ratio,
-                room_width, front_room_depth, back_room_depth,
-                living_room_depth, bathroom_depth, color_flag)
+                room_width.m, front_room_depth.m, back_room_depth.m,
+                living_room_depth.m, bathroom_depth.m, color_flag)
 
 # draw a couple of windows, first two on the front
 draw_window(model,
@@ -523,4 +551,4 @@ draw_interior_door(model,
 
 draw_additional_stories(model, num_stories, height.m)
 draw_front_door(model, width.m, front_door_width.m, front_door_height.m, thickness.m)
-draw_roof(model, width, depth, height, num_stories, depth/2, color_flag) if draw_roof_flag
+draw_roof(model, width.m, depth.m, height.m, num_stories, depth.m/2, color_flag) if draw_roof_flag
