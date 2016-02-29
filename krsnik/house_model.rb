@@ -389,8 +389,7 @@ def draw_roof(model, width, depth, height, num_stories, roof_height, color_flag)
     exterior_color.texture = TEXTURES_DIR + DEFAULT_EXTERIOR_COLOR
     exterior_color.texture.size = DEFAULT_TEXTURE_SIZE
     tr1.material = exterior_color
-    num_stories > 1 ? tr2.back_material = exterior_color : tr2.material = exterior_color
-
+    tr2.material = exterior_color
   end
 end
 
@@ -405,9 +404,15 @@ def draw_additional_stories(model, num_stories, height)
     moving_point = Geom::Point3d.new -WINDOW_PADDING, -WINDOW_PADDING, (i + 1) * height
     t = Geom::Transformation.new moving_point
     new_story = new_story.move! t
+    new_story.explode
   end
   #explode the base story so front doors can be added
   story.explode
+end
+
+def explode(entities)
+  entities_group = entities.add_group(entities.to_a)
+  entities_group.explode
 end
 
 # Getting parameters
@@ -552,3 +557,4 @@ draw_interior_door(model,
 draw_additional_stories(model, num_stories, height.m)
 draw_front_door(model, width.m, front_door_width.m, front_door_height.m, thickness.m)
 draw_roof(model, width.m, depth.m, height.m, num_stories, depth.m/2, color_flag) if draw_roof_flag
+explode(entities)
