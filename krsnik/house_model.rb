@@ -393,7 +393,8 @@ def draw_roof(model, width, depth, height, num_stories, roof_height, color_flag)
   end
 end
 
-def draw_additional_stories(model, num_stories, height)
+def draw_additional_stories(model, num_stories, width, height,
+                            window_width, window_height, thickness)
 
   entities = model.active_entities
   # group the elements of the base story for copying
@@ -405,14 +406,17 @@ def draw_additional_stories(model, num_stories, height)
     t = Geom::Transformation.new moving_point
     new_story = new_story.move! t
     new_story.explode
+    # add a window to all additional stories in place of front door
+    draw_window(model,
+                width/2 - window_width/2,
+                width/2 + window_width/2,
+                0, 0,
+                WINDOW_HEIGHT_FROM_FLOOR + (i+1) * height,
+                WINDOW_HEIGHT_FROM_FLOOR + (i+1) * height + window_height,
+                thickness)
   end
   #explode the base story so front doors can be added
   story.explode
-end
-
-def explode(entities)
-  entities_group = entities.add_group(entities.to_a)
-  entities_group.explode
 end
 
 # Getting parameters
@@ -516,7 +520,6 @@ draw_window(model,
             WINDOW_HEIGHT_FROM_FLOOR,
             WINDOW_HEIGHT_FROM_FLOOR + window_height.m,
             thickness.m)
-
 # draw doors on front room
 draw_interior_door(model,
                     room_width.m + 2 * thickness.m,
@@ -554,7 +557,7 @@ draw_interior_door(model,
                     width.m,
                     thickness.m)
 
-draw_additional_stories(model, num_stories, height.m)
+draw_additional_stories(model, num_stories, width.m, height.m,
+                        window_width.m, window_height.m, thickness.m) if num_stories > 1
 draw_front_door(model, width.m, front_door_width.m, front_door_height.m, thickness.m)
 draw_roof(model, width.m, depth.m, height.m, num_stories, depth.m/2, color_flag) if draw_roof_flag
-explode(entities)
