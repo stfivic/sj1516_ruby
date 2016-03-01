@@ -7,7 +7,8 @@ FRONT_DOOR_FRAME_DEPTH = 0.15.m
 FRONT_DOOR_GLASS_DEPTH = 0.1.m
 DOORKNOB_DEFAULT_RADIUS = 0.05.m
 WINDOW_HEIGHT_FROM_FLOOR = 0.9.m
-WINDOW_PADDING = 0.1.m
+WINDOW_PADDING = 0.05.m
+WINDOW_APRON_PADDING = 0.1.m
 ROOF_THICKNESS = 0.25.m
 ROOF_INDENT = 0.3.m
 
@@ -159,10 +160,10 @@ class House
 
       # build window apron
       window_apron = draw_rect(x0, x1,
-                              y0 - WINDOW_PADDING,
-                              y1 + WINDOW_PADDING,
-                              z0 - WINDOW_PADDING, z0)
-      window_apron.pushpull(WINDOW_PADDING)
+                              y0 - WINDOW_APRON_PADDING,
+                              y1 + WINDOW_APRON_PADDING,
+                              z0 - WINDOW_APRON_PADDING, z0)
+      window_apron.pushpull(WINDOW_APRON_PADDING)
     # if the window is to be on the right side
     elsif x0 == x1 && x0 > 0
       # window pane face
@@ -181,10 +182,10 @@ class House
 
       # build window apron
       window_apron = draw_rect(x0, x1,
-                              y0 - WINDOW_PADDING,
-                              y1 + WINDOW_PADDING,
-                              z0 - WINDOW_PADDING, z0)
-      window_apron.pushpull(WINDOW_PADDING)
+                              y0 - WINDOW_APRON_PADDING,
+                              y1 + WINDOW_APRON_PADDING,
+                              z0 - WINDOW_APRON_PADDING, z0)
+      window_apron.pushpull(WINDOW_APRON_PADDING)
     # if the window is to be on the front side
     elsif y0 == y1 && y0 == 0
       # window pane face
@@ -202,11 +203,11 @@ class House
       window_pane_face.pushpull(WINDOW_PADDING/2)
 
       # build window apron
-      window_apron = draw_rect(x0 - WINDOW_PADDING,
-                              x1 + WINDOW_PADDING,
+      window_apron = draw_rect(x0 - WINDOW_APRON_PADDING,
+                              x1 + WINDOW_APRON_PADDING,
                               y0, y1,
-                              z0 - WINDOW_PADDING, z0)
-      window_apron.pushpull(WINDOW_PADDING)
+                              z0 - WINDOW_APRON_PADDING, z0)
+      window_apron.pushpull(WINDOW_APRON_PADDING)
     # if the window is to be on the back side
     elsif y0 == y1 && y0 > 0
       # window pane face
@@ -224,11 +225,11 @@ class House
       window_pane_face.pushpull(-WINDOW_PADDING/2)
 
       # build window apron
-      window_apron = draw_rect(x0 - WINDOW_PADDING,
-                              x1 + WINDOW_PADDING,
+      window_apron = draw_rect(x0 - WINDOW_APRON_PADDING,
+                              x1 + WINDOW_APRON_PADDING,
                               y0, y1,
-                              z0 - WINDOW_PADDING, z0)
-      window_apron.pushpull(WINDOW_PADDING)
+                              z0 - WINDOW_APRON_PADDING, z0)
+      window_apron.pushpull(WINDOW_APRON_PADDING)
     end
 
     # apply glass texture
@@ -470,7 +471,7 @@ class House
     # make a copy of the base story and move it on top of existing stories
     for i in 0...(@num_stories - 1)
       new_story = story.copy
-      moving_point = Geom::Point3d.new -WINDOW_PADDING, -WINDOW_PADDING, (i + 1) * @height
+      moving_point = Geom::Point3d.new -WINDOW_APRON_PADDING, -WINDOW_APRON_PADDING, (i + 1) * @height
       t = Geom::Transformation.new moving_point
       new_story = new_story.move! t
       new_story.explode
