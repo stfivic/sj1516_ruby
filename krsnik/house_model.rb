@@ -1,4 +1,4 @@
-TEXTURES_DIR = "C:/Users/Ivan/AppData/Roaming/SketchUp/SketchUp 2016/SketchUp/Custom Textures/"
+TEXTURES_DIR = "C:/Users/Ivan/AppData/Roaming/SketchUp/SketchUp 2016/SketchUp/Textures/"
 DEFAULT_EXTERIOR_COLOR = "Peru.jpg"
 DEFAULT_TEXTURE_SIZE = 50
 FLOOR_PADDING = 0.1.m
