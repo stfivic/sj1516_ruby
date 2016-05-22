@@ -1,0 +1,3 @@
+Za prikaz dema pokrenuti skriptu test.rb. Skripta se pokreće u Sketchup naredbom load.
+Prije samog pokretanja potrebno je dodati teksture u folder Textures 
+(Folder se nalazi u AppData primjer:C:\Users\josip\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\Textures)
