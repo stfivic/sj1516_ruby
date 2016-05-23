@@ -1,3 +1,9 @@
+require_relative 'modern_house_floor'
+require_relative 'material'
+require_relative 'cardinal_point'
+require_relative 'room'
+require_relative 'room_type'
+
 class ModernHouse
   
   attr_accessor :floors, :roof, :roof_sup, :floorDelimiter,:floorSeparator,:materials
