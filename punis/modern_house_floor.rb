@@ -1,3 +1,8 @@
+require_relative 'material'
+require_relative 'cardinal_point'
+require_relative 'room'
+require_relative 'room_type'
+
 class ModernHouseFloor
   #dodati original_pts, working_pts
   #dodati funkciju update working_pts
