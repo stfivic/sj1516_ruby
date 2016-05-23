@@ -1,3 +1,8 @@
+require_relative 'modern_house_floor'
+require_relative 'material'
+require_relative 'cardinal_point'
+
+
 class Room
   attr_accessor :floor,:width,:height,:type,:position,:thickness,:room,:pts_1,:pts_2
   attr_accessor :door_material
