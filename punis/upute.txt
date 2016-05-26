@@ -5,3 +5,13 @@ Prije samog pokretanja potrebno je dodati teksture u folder Textures
 (Folder se nalazi u AppData primjer:C:\Users\josip\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\Textures)
 
 Napomena - svi ruby file-ovi moraju biti u istom folderu. Ako se mijenja njihova lokacije promjeniti import
+
+Skripta test kreira objekt tipa ModernHouse i poziva metodu demoHouse koja kreira primjer kuce. Na početku se poziva metoda setHouse koja prima dimenzije kuce (to je samo pomoćna metoda za kreiranje dva kata,Modern House Floor, kuće). Nakon  toga dodaje se svakom katu dodaje se dodatak. Kod dodavanja dodataka osim dimenzija mora se i specificirati poziju. Unutar skipte koristi se modul CardinalPoint za označavanje pozicija. Metodom setRoof definira se krov. 
+Nakon kreiranja početnog oblika metoda decorateSupplement i decorateFloor dodaju se konture. Svaka ta metoda prima lokaciju zida i dimenzije. Na kraju metoda addRoofMaterial,addMaterial i addMaterialSupplement dodaje se materijal. Metode mogu primiti jedan od materijala defiranog u modulu Material. Bitno je za naglasti da se ukoliko se dodaje nova kontura ili kat moraju se ponovo pozvati metoda za dodavanje materiala.
+Za dodavanje prozora koristi se metoda addWindow a za dodavanje vratiju addDoor. Za razliku od dodavanja materijala  na vanjske zidove ako se želi promijenit material koristi se metoda changeWindowMaterial ili changeDoorMaterial ako želimo promijenit material za vrata.
+Na kraju preostaje kreiranje soba. Soba se kreira tako da se konstruira novi objekt tipa Room. Konstruktoru moramo prosljediti kat (ModernHouseFloor), tip sobe(modul RoomType), lokaciju sobe i njene dimenzije.
+
+
+
+
+
