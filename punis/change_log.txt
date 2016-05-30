@@ -1,3 +1,4 @@
 20160202 stfivic        Repository created and structured
 Dodan novi 3d model tipske kuće
 Dodan import na početku skripti
+Preimenovane slike
