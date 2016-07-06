@@ -1,0 +1,14 @@
+1. Potrebno je smjestiti ruby skriptu u folder:
+   
+      "C:\Users\{username}\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\Plugins\"
+
+2. Texture potrebno raspakirati u folder: 
+
+      "C:\Users\{username}\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\"
+   
+3. Promijeniti putanju do textura unutar ruby skripte za odgovarajuæi username. 
+	(TEXTURES_DIR = "C:/Users/{username}/AppData/Roaming/SketchUp/SketchUp 2016/SketchUp/Textures/")
+
+4. Window -> Ruby Console -> upisati load('house.rb')
+
+
