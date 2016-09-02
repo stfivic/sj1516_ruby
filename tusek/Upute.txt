@@ -1,0 +1,15 @@
+1. Potrebno je smjestiti Ruby skriptu u folder:
+
+	"C:\Users\{username}\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\Plugins\"
+
+2. Texture je potrebno raspakirati u folder:
+
+	"C:\Users\{username}\AppData\Roaming\SketchUp\SketchUp 2016\SketchUp\"
+
+3. Promjeniti putanju do tekstura unutar Ruby skripte na odgovarajuæu putanju:
+
+	(TEXTURES_DIR = "C:/Users/{username}/AppData/Roaming/SketchUp/SketchUp 2016/SketchUp/Textures/")
+
+4. Pokrenuti skriptu u Ruby konzoli pozivanjem naredbe:
+
+	load('mojaKuca.rb')
